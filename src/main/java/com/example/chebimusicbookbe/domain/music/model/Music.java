@@ -28,7 +28,7 @@ public class Music {
     private String title;
 
     @Column(nullable = false)
-    private String albumCover;
+    private String albumArtUrl;
 
     @Column(nullable = false)
     private String artist;
@@ -37,10 +37,10 @@ public class Music {
     private String category;
 
     @Column(nullable = true)
-    private String youtubeLink;
+    private String youtubeUrl;
 
     @Column(nullable = true)
-    private String soopLink;
+    private String soopUrl;
 
     @Column(updatable = false)
     @CreatedDate

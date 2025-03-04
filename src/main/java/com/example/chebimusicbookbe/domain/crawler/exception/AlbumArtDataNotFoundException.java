@@ -1,4 +1,4 @@
-package com.example.chebimusicbookbe.domain.artist.exception;
+package com.example.chebimusicbookbe.domain.crawler.exception;
 
 import com.example.chebimusicbookbe.global.exeption.NotFoundException;
 

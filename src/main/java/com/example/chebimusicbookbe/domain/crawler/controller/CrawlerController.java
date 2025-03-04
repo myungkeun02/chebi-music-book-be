@@ -1,7 +1,7 @@
-package com.example.chebimusicbookbe.domain.artist.controller;
+package com.example.chebimusicbookbe.domain.crawler.controller;
 
-import com.example.chebimusicbookbe.domain.artist.exception.AlbumArtDataNotFoundException;
-import com.example.chebimusicbookbe.domain.artist.service.CrawlerService;
+import com.example.chebimusicbookbe.domain.crawler.exception.AlbumArtDataNotFoundException;
+import com.example.chebimusicbookbe.domain.crawler.service.CrawlerService;
 import com.example.chebimusicbookbe.global.response.BaseResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

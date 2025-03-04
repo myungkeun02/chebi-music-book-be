@@ -1,4 +1,4 @@
-package com.example.chebimusicbookbe.domain.artist.service;
+package com.example.chebimusicbookbe.domain.crawler.service;
 
 import java.util.List;
 

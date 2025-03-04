@@ -1,6 +1,7 @@
-package com.example.chebimusicbookbe.domain.artist.service;
+package com.example.chebimusicbookbe.domain.crawler.service;
 
-import com.example.chebimusicbookbe.domain.artist.exception.AlbumArtDataNotFoundException;
+
+import com.example.chebimusicbookbe.domain.crawler.exception.AlbumArtDataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
