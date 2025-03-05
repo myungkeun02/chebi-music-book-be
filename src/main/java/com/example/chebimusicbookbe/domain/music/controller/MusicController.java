@@ -4,7 +4,7 @@ import com.example.chebimusicbookbe.domain.music.exception.AlreadyRegisterMusicE
 import com.example.chebimusicbookbe.domain.music.exception.MusicNotFoundException;
 import com.example.chebimusicbookbe.domain.music.request.CreateMusicRequest;
 import com.example.chebimusicbookbe.domain.music.request.UpdateMusicByIdRequest;
-import com.example.chebimusicbookbe.domain.music.response.AllMusicResponse;
+import com.example.chebimusicbookbe.domain.music.response.MusicListResponse;
 import com.example.chebimusicbookbe.domain.music.response.MusicResponse;
 import com.example.chebimusicbookbe.domain.music.service.MusicService;
 import com.example.chebimusicbookbe.global.response.BaseResponse;
@@ -60,9 +60,9 @@ public class MusicController {
 
     @GetMapping("/all")
     @Operation(summary = "음악 리스트 조회", description = "musicDB에 저장된 모든 음악 정보를 조회합니다.")
-    ResponseEntity<BaseResponse<AllMusicResponse>> getAllMusic () {
+    ResponseEntity<BaseResponse<MusicListResponse>> getAllMusic () {
         try {
-            AllMusicResponse res = musicService.findAllMusic();
+            MusicListResponse res = musicService.findAllMusic();
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(new BaseResponse<>(res, HttpStatus.OK.value(), "모든 음악 정보를 가져왔습니다.."));

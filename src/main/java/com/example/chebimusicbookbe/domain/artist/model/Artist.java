@@ -1,4 +1,4 @@
-package com.example.chebimusicbookbe.domain.music.model;
+package com.example.chebimusicbookbe.domain.artist.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
@@ -13,32 +13,19 @@ import org.springframework.data.annotation.CreatedDate;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Table(name = "artist")
 @Entity
-@Table (name = "music")
 
-public class Music {
+public class Artist {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String title;
-
-    @Column(unique = true, nullable = false)
-    private String albumArtUrl;
-
-    @Column(nullable = false)
-    private String artist;
-
-    @Column(nullable = false)
-    private String category;
-
-    private String youtubeUrl;
-
-    private String soopUrl;
+    private String name;
 
     @Column(updatable = false)
     @CreatedDate

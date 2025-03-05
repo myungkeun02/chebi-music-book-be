@@ -5,7 +5,7 @@ import com.example.chebimusicbookbe.domain.music.model.Music;
 import com.example.chebimusicbookbe.domain.music.repository.MusicRepository;
 import com.example.chebimusicbookbe.domain.music.request.CreateMusicRequest;
 import com.example.chebimusicbookbe.domain.music.request.UpdateMusicByIdRequest;
-import com.example.chebimusicbookbe.domain.music.response.AllMusicResponse;
+import com.example.chebimusicbookbe.domain.music.response.MusicListResponse;
 import com.example.chebimusicbookbe.domain.music.response.MusicResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -64,9 +64,9 @@ public class MusicServiceImpl implements MusicService {
     }
 
     @Override
-    public AllMusicResponse findAllMusic() {
+    public MusicListResponse findAllMusic() {
         List<Music> musics = musicRepository.findAll();
-        return AllMusicResponse.builder()
+        return MusicListResponse.builder()
                 .musicList(musics)
                 .build();
     }

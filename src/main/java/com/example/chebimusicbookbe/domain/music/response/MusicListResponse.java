@@ -13,6 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class AllMusicResponse {
+public class MusicListResponse {
     private List<Music> musicList;
 }
