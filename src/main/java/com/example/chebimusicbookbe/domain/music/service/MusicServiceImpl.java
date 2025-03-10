@@ -8,12 +8,14 @@ import com.example.chebimusicbookbe.domain.music.request.UpdateMusicByIdRequest;
 import com.example.chebimusicbookbe.domain.music.response.MusicListResponse;
 import com.example.chebimusicbookbe.domain.music.response.MusicListWithPagingResponse;
 import com.example.chebimusicbookbe.domain.music.response.MusicResponse;
+import com.example.chebimusicbookbe.infra.redis.MusicCacheService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 public class MusicServiceImpl implements MusicService {
 
     private final MusicRepository musicRepository;
+    private final MusicCacheService musicCacheService;
 
     /**
      * 음악 생성
@@ -40,7 +43,7 @@ public class MusicServiceImpl implements MusicService {
                         .soopUrl(request.getSoopUrl())
                         .build()
         );
-
+        musicCacheService.evictMusicList();
         return MusicResponse.from(music);
     }
 
@@ -49,10 +52,18 @@ public class MusicServiceImpl implements MusicService {
      */
     @Override
     public MusicResponse findMusicById(Long id) {
+        MusicResponse cachedMusic = musicCacheService.getCachedMusic(String.valueOf(id));
+        if (cachedMusic != null) {
+            return cachedMusic;
+        }
+
         Music music = musicRepository.findById(id)
                 .orElseThrow(() -> new MusicNotFoundException("[ERROR] Music Not Found"));
+        MusicResponse response = MusicResponse.from(music);
 
-        return MusicResponse.from(music);
+        musicCacheService.cacheMusicWithTTL(response, Duration.ofMinutes(30));
+
+        return response;
     }
 
     /**
@@ -60,14 +71,23 @@ public class MusicServiceImpl implements MusicService {
      */
     @Override
     public MusicListResponse findAllMusic() {
+
+        MusicListResponse cachedList = musicCacheService.getCachedMusicList();
+        if (cachedList != null) {
+            return cachedList;
+        }
+
         List<Music> musics = musicRepository.findAll();
         List<MusicResponse> musicResponses = musics.stream()
                 .map(MusicResponse::from)
                 .collect(Collectors.toList());
 
-        return MusicListResponse.builder()
+        MusicListResponse response = MusicListResponse.builder()
                 .musicList(musicResponses)
                 .build();
+        musicCacheService.cacheMusicListWithTTL(response, Duration.ofMinutes(60));
+
+        return response;
     }
 
     /**
@@ -82,6 +102,10 @@ public class MusicServiceImpl implements MusicService {
         updateMusicFields(oldMusic, request);
 
         Music updatedMusic = musicRepository.save(oldMusic);
+
+        musicCacheService.evictMusicList();
+        musicCacheService.evictMusic(String.valueOf(id));
+        musicCacheService.cacheMusicWithTTL(MusicResponse.from(updatedMusic), Duration.ofMinutes(30));
 
         return MusicResponse.from(updatedMusic);
     }
@@ -116,6 +140,8 @@ public class MusicServiceImpl implements MusicService {
                 .orElseThrow(() -> new MusicNotFoundException("[ERROR] Music Not Found"));
 
         musicRepository.delete(music);
+
+        musicCacheService.evictMusicList();
     }
 
     /**

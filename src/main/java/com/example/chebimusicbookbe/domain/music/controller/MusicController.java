@@ -3,6 +3,7 @@ package com.example.chebimusicbookbe.domain.music.controller;
 import com.example.chebimusicbookbe.domain.music.request.CreateMusicRequest;
 import com.example.chebimusicbookbe.domain.music.request.UpdateMusicByIdRequest;
 import com.example.chebimusicbookbe.domain.music.response.MusicListResponse;
+import com.example.chebimusicbookbe.domain.music.response.MusicListWithPagingResponse;
 import com.example.chebimusicbookbe.domain.music.response.MusicResponse;
 import com.example.chebimusicbookbe.domain.music.service.MusicService;
 import com.example.chebimusicbookbe.global.constant.ResponseMessage;
@@ -55,9 +56,9 @@ public class MusicController {
     @PageableAsQueryParam
     @GetMapping
     @Operation(summary = "페이지네이션 음악 리스트 조회", description = "페이지네이션으로 음악 리스트를 조회합니다.")
-    public ResponseEntity<BaseResponse<MusicListResponse>> getMusics(
+    public ResponseEntity<BaseResponse<MusicListWithPagingResponse>> getMusics(
             @PageableDefault(page =0, size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
-        MusicListResponse res = musicService.findAllMusicWithPaging(pageable);
+        MusicListWithPagingResponse res = musicService.findAllMusicWithPaging(pageable);
         return ResponseEntity
                 .ok(new BaseResponse<>(res, HttpStatus.OK.value(), ResponseMessage.MUSIC_FETCH_SUCCESS));
     }
