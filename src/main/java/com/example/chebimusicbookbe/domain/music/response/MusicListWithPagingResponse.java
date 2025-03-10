@@ -1,10 +1,7 @@
 package com.example.chebimusicbookbe.domain.music.response;
 
 import com.example.chebimusicbookbe.domain.music.model.Music;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,6 +10,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class MusicListResponse {
+public class MusicListWithPagingResponse {
     private List<MusicResponse> musicList;
+    private int currentPage;
+    private int totalPages;
+    private long totalElements;
+    private int size;
 }
