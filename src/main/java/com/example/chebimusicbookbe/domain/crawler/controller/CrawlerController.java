@@ -19,9 +19,9 @@ import java.util.List;
 public class CrawlerController {
     private final CrawlerService crawlerService;
 
-    @GetMapping()
+    @GetMapping("/{keyword}")
     public ResponseEntity<BaseResponse<List<String>>> getAlbumArt(
-            @RequestBody String keyword
+            @PathVariable String keyword
     ) {
         try {
             List<String> response = crawlerService.albumArtCrawl(keyword);

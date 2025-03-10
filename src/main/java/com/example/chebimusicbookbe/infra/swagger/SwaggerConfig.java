@@ -1,10 +1,7 @@
 package com.example.chebimusicbookbe.infra.swagger;
 
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,24 +10,25 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
+
     @Bean
     public OpenAPI openAPI() {
-        String jwt = "JWT";
-        SecurityRequirement securityRequirement = new SecurityRequirement().addList(jwt);
+        // 인증 관련 부분 주석 처리!
+        // String jwt = "JWT";
+        // SecurityRequirement securityRequirement = new SecurityRequirement().addList(jwt);
         Server server = new Server();
-        server.setUrl("https://localhost:8000");
-        Components components = new Components().addSecuritySchemes(jwt, new SecurityScheme()
-                .name(jwt)
-                .type(SecurityScheme.Type.HTTP)
-                .scheme("Bearer")
-                .bearerFormat("JWT"));
+        server.setUrl("http://localhost:8080");
 
         return new OpenAPI()
-                .components(components)
+                // 인증 관련 부분 주석 처리!
+                //.components(new Components().addSecuritySchemes(jwt, new SecurityScheme()
+                //        .name(jwt)
+                //        .type(SecurityScheme.Type.HTTP)
+                //        .scheme("Bearer")
+                //        .bearerFormat("JWT")))
                 .info(apiInfo())
-                .addSecurityItem(securityRequirement)
-                .servers(List.of(server))
-                .components(components);
+                // .addSecurityItem(securityRequirement)
+                .servers(List.of(server));
     }
 
     private Info apiInfo() {
@@ -41,3 +39,4 @@ public class SwaggerConfig {
     }
 
 }
+
