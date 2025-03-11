@@ -13,5 +13,5 @@ import java.util.List;
 @Builder
 
 public class CategoryListResponse {
-    private List<CategoryResponse> categories;
+    private List<CategoryResponse> categoryList;
 }

@@ -12,6 +12,6 @@ public interface CategoryService {
     CategoryResponse findCategoryById(Long id);
     CategoryListResponse findAllCategory();
     CategoryListWithPagingResponse findAllCategoryWithPaging(Pageable pageable);
-    CategoryResponse updateCategoryById(UpdateCategoryByIdRequest updateCategoryByIdRequest);
+    CategoryResponse updateCategoryById(Long id, UpdateCategoryByIdRequest updateCategoryByIdRequest);
     void deleteCategoryById(Long id);
 }

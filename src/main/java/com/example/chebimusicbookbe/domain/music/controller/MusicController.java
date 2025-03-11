@@ -56,7 +56,7 @@ public class MusicController {
     @PageableAsQueryParam
     @GetMapping
     @Operation(summary = "페이지네이션 음악 리스트 조회", description = "페이지네이션으로 음악 리스트를 조회합니다.")
-    public ResponseEntity<BaseResponse<MusicListWithPagingResponse>> getMusics(
+    public ResponseEntity<BaseResponse<MusicListWithPagingResponse>> getAllMusicWithPaging (
             @PageableDefault(page =0, size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         MusicListWithPagingResponse res = musicService.findAllMusicWithPaging(pageable);
         return ResponseEntity

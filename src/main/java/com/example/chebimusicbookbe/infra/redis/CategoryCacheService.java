@@ -42,12 +42,12 @@ public class CategoryCacheService {
         redisService.storeWithTTL(key, categoryResponse, duration);
     }
 
-    public CategoryResponse getCachedCategory(Long categoryId) {
+    public CategoryResponse getCachedCategory(String categoryId) {
         String key = CATEGORY_KEY_PREFIX + categoryId;
         return redisService.load(key, CategoryResponse.class);
     }
 
-    public void evictCategory(Long categoryId) {
+    public void evictCategory(String categoryId) {
         String key = CATEGORY_KEY_PREFIX + categoryId;
         redisService.remove(key);
     }
