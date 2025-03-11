@@ -8,10 +8,14 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 
-public class CategoryListResponse {
-    private List<CategoryResponse> categories;
+public class CategoryListWithPagingResponse {
+    private List<CategoryResponse> categoryList;
+    private int currentPage;
+    private int totalPages;
+    private long totalElements;
+    private int size;
 }
