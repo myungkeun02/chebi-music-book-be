@@ -25,14 +25,14 @@ public class ResponseMessage {
     public static final String ACCESS_DENIED = "접근 권한이 없습니다.";
 
     // 👤 ARTIST 관련 메시지 (예시)
-    public static final String ARTIST_REGISTER_SUCCESS = "아티스트가 등록되었습니다.";
-    public static final String ARTIST_FETCH_SUCCESS = "아티스트 정보를 가져왔습니다.";
-    public static final String ARTIST_UPDATE_SUCCESS = "아티스트 정보를 수정했습니다.";
-    public static final String ARTIST_DELETE_SUCCESS = "아티스트 정보를 삭제했습니다.";
+    public static final String ARTIST_REGISTER_SUCCESS = "아티스트가 생성되었습니다.";
+    public static final String ARTIST_FETCH_SUCCESS = "아티스트를 조회했습니다.";
+    public static final String ARTIST_UPDATE_SUCCESS = "아티스트가 수정되었습니다.";
+    public static final String ARTIST_DELETE_SUCCESS = "아티스트가 삭제되었습니다.";
 
     // 🗂️ CATEGORY 관련 메시지 (예시)
-    public static final String CATEGORY_REGISTER_SUCCESS = "카테고리가 등록되었습니다.";
-    public static final String CATEGORY_FETCH_SUCCESS = "카테고리 정보를 가져왔습니다.";
-    public static final String CATEGORY_UPDATE_SUCCESS = "카테고리 정보를 수정했습니다.";
-    public static final String CATEGORY_DELETE_SUCCESS = "카테고리 정보를 삭제했습니다.";
+    public static final String CATEGORY_REGISTER_SUCCESS = "카테고리가 생성되었습니다.";
+    public static final String CATEGORY_FETCH_SUCCESS = "카테고리를 조회했습니다.";
+    public static final String CATEGORY_UPDATE_SUCCESS = "카테고리가 수정되었습니다.";
+    public static final String CATEGORY_DELETE_SUCCESS = "카테고리가 삭제되었습니다.";
 }

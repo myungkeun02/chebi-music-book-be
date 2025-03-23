@@ -8,10 +8,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-
 public class ArtistListResponse {
-    private List<ArtistResponse> artists;
+    private List<ArtistResponse> artistList;
 }

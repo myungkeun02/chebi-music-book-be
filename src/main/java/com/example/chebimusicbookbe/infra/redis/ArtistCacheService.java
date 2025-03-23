@@ -2,7 +2,6 @@ package com.example.chebimusicbookbe.infra.redis;
 
 import com.example.chebimusicbookbe.domain.artist.response.ArtistListResponse;
 import com.example.chebimusicbookbe.domain.artist.response.ArtistResponse;
-import com.example.chebimusicbookbe.domain.music.response.MusicListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,6 @@ import java.time.Duration;
 
 @Service
 @RequiredArgsConstructor
-
 public class ArtistCacheService {
     private final RedisService redisService;
 
